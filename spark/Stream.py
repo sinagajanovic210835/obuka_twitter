@@ -168,7 +168,7 @@ kafka = df.selectExpr("cast (key as string)","cast (value as string)") \
 
 def batchFunction(batch, bid):
       geo = batch.filter(col("value.geo.coordinates.coordinates").isNotNull()) \
-            .select(col("value.author_id"), \
+            .select(col("value.username"), \
               col("value.text"), \
               col("value.geo.coordinates.coordinates").getItem(0).alias("longitude"), \
               col("value.geo.coordinates.coordinates").getItem(1).alias("latitude") \
