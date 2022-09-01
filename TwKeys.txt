@@ -1,0 +1,461 @@
+E00ueuaUY6QGrnLU2PMBikB5d API key
+ana id 1285882216476741633
+GiaX0AL3iptoXlsHgQ7bCHvEiSM8I5Tv9mI84aX0GZLWrz3gJt API key secret
+
+
+1535205837958008832-XR1NEsx5pm0VSQs5swQ2dhc8TWi6X6 acess token
+
+
+
+/usr/local/openjdk-8/lib/security/cacerts
+
+
+
+
+/tmp/data/core-site.xml,/tmp/data/hdfs-site.xml
+
+
+
+{ 
+"namespace": "nifi", 
+"name": "store_event", 
+"type": "record", 
+"fields": [ 
+    { "data": {"id": "id", "type": "string", "text": "text", "type": "string" }    
+] 
+}
+
+
+
+
+root
+ |-- attachments: struct (nullable = true)                  
+ |    |-- media_keys: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |    |-- poll_ids: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- author_id: string (nullable = true)
+ |-- context_annotations: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- domain: struct (nullable = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- name: string (nullable = true)
+ |    |    |-- entity: struct (nullable = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- name: string (nullable = true)
+ |-- conversation_id: string (nullable = true)
+ |-- created_at: string (nullable = true)
+ |-- entities: struct (nullable = true)
+ |    |-- annotations: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- normalized_text: string (nullable = true)
+ |    |    |    |-- probability: double (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |-- cashtags: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- tag: string (nullable = true)
+ |    |-- hashtags: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- tag: string (nullable = true)
+ |    |-- mentions: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- username: string (nullable = true)
+ |    |-- urls: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- display_url: string (nullable = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- expanded_url: string (nullable = true)
+ |    |    |    |-- images: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- height: long (nullable = true)
+ |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |    |    |    |-- width: long (nullable = true)
+ |    |    |    |-- media_key: string (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- status: long (nullable = true)
+ |    |    |    |-- title: string (nullable = true)
+ |    |    |    |-- unwound_url: string (nullable = true)
+ |    |    |    |-- url: string (nullable = true)
+ |-- geo: struct (nullable = true)
+ |    |-- coordinates: struct (nullable = true)
+ |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |-- element: double (containsNull = true)
+ |    |    |-- type: string (nullable = true)
+ |    |-- place_id: string (nullable = true)
+ |-- id: string (nullable = true)
+ |-- in_reply_to_user_id: string (nullable = true)
+ |-- lang: string (nullable = true)
+ |-- possibly_sensitive: boolean (nullable = true)
+ |-- public_metrics: struct (nullable = true)
+ |    |-- like_count: long (nullable = true)
+ |    |-- quote_count: long (nullable = true)
+ |    |-- reply_count: long (nullable = true)
+ |    |-- retweet_count: long (nullable = true)
+ |-- referenced_tweets: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |-- reply_settings: string (nullable = true)
+ |-- source: string (nullable = true)
+ |-- text: string (nullable = true)
+ |-- withheld: struct (nullable = true)
+ |    |-- copyright: boolean (nullable = true)
+ |    |-- country_codes: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ 
+ AAAAAAAAAAAAAAAAAAAAAClKfgEAAAAAM%2BStYMB2%2F8HwIqoaZijZu%2F4enqY%3DnvngGIAdLBeQ79cUNg3zX6e3qrjanMCYXorpzGvWtcxJ3EmGhL Ana
+ 
+ geo, language, sources
+ 
+  val id   = df.select("id").distinct()
+  val txtx = df.select("text").distinct()
+  
+ 
+df>>>     339800
+id>>>     218378
+txt>>>    76837
+ 
+ 
+ 
+   val df = df1
+  .groupBy("id").agg(
+    first(col("attachments")).alias("attachments"),
+    first(col("author_id")).alias("author_id"),
+    first(col("context_annotations")).alias("context_annotations"),
+    first(col("conversation_id")).alias("conversation_id"),
+    first(col("created_at")).alias("created_at"),
+    first(col("entities")).alias("entities"),
+    first(col("geo")).alias("geo"),
+    first(col("in_reply_to_user_id")).alias("in_reply_to_user_id"),
+    first(col("lang")).alias("lang"),
+    first(col("possibly_sensitive")).alias("possibly_sensitive"),
+    max(col("public_metrics")).alias("public_metrics"),
+    first(col("referenced_tweets")).alias("referenced_tweets"),
+    first(col("reply_settings")).alias("reply_settings"),
+    first(col("source")).alias("source"),
+    first(col("text")).alias("text"),
+    first(col("withheld")).alias("withheld")
+  )
+  
+    val geo = df.filter(col("geo.coordinates.coordinates").isNotNull).
+      select(col("id"), col("text"),
+      element_at(col("geo.coordinates.coordinates"), 1).alias("longitude"),
+      element_at(col("geo.coordinates.coordinates"), 2).alias("latitude")).
+      distinct()
+      
+      
+         val geo = batch.filter(col("value.geo.coordinates").isNotNull)
+        .select(col("key"), col("value.text"), col("value.geo"))
+        .select(col("text"), col("geo.coordinates.coordinates"))
+        .select(
+          col("text"),
+          col("coordinates").getItem(0).as("longitude"),
+          col("coordinates").getItem(1).as("latitude")         
+          
+          
+        )   
+ ****************************************************************************************************** 
+root
+ |-- id: string (nullable = true)
+ |-- attachments: struct (nullable = true)
+ |    |-- media_keys: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+ |-- author_id: string (nullable = true)
+ |-- context_annotations: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- domain: struct (nullable = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- name: string (nullable = true)
+ |    |    |-- entity: struct (nullable = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- name: string (nullable = true)
+ |-- conversation_id: string (nullable = true)
+ |-- created_at: string (nullable = true)
+ |-- entities: struct (nullable = true)
+ |    |-- annotations: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- normalized_text: string (nullable = true)
+ |    |    |    |-- probability: double (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |-- cashtags: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- tag: string (nullable = true)
+ |    |-- hashtags: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- tag: string (nullable = true)
+ |    |-- mentions: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- id: string (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- username: string (nullable = true)
+ |    |-- urls: array (nullable = true)
+ |    |    |-- element: struct (containsNull = true)
+ |    |    |    |-- description: string (nullable = true)
+ |    |    |    |-- display_url: string (nullable = true)
+ |    |    |    |-- end: long (nullable = true)
+ |    |    |    |-- expanded_url: string (nullable = true)
+ |    |    |    |-- images: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- height: long (nullable = true)
+ |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |    |    |    |-- width: long (nullable = true)
+ |    |    |    |-- media_key: string (nullable = true)
+ |    |    |    |-- start: long (nullable = true)
+ |    |    |    |-- status: long (nullable = true)
+ |    |    |    |-- title: string (nullable = true)
+ |    |    |    |-- unwound_url: string (nullable = true)
+ |    |    |    |-- url: string (nullable = true)
+ |-- geo: struct (nullable = true)
+ |    |-- coordinates: struct (nullable = true)
+ |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |-- element: double (containsNull = true)
+ |    |    |-- type: string (nullable = true)
+ |    |-- place_id: string (nullable = true)
+ |-- in_reply_to_user_id: string (nullable = true)
+ |-- lang: string (nullable = true)
+ |-- possibly_sensitive: boolean (nullable = true)
+ |-- public_metrics: struct (nullable = true)
+ |    |-- like_count: long (nullable = true)
+ |    |-- quote_count: long (nullable = true)
+ |    |-- reply_count: long (nullable = true)
+ |    |-- retweet_count: long (nullable = true)
+ |-- referenced_tweets: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |-- reply_settings: string (nullable = true)
+ |-- source: string (nullable = true)
+ |-- text: string (nullable = true)
+ |-- withheld: struct (nullable = true)
+ |    |-- copyright: boolean (nullable = true)
+ |    |-- country_codes: array (nullable = true)
+ |    |    |-- element: string (containsNull = true)
+**********************************************************************************************************
+root
+ |-- media: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- alt_text: string (nullable = true)
+ |    |    |-- duration_ms: long (nullable = true)
+ |    |    |-- height: long (nullable = true)
+ |    |    |-- media_key: string (nullable = true)
+ |    |    |-- preview_image_url: string (nullable = true)
+ |    |    |-- public_metrics: struct (nullable = true)
+ |    |    |    |-- view_count: long (nullable = true)
+ |    |    |-- type: string (nullable = true)
+ |    |    |-- url: string (nullable = true)
+ |    |    |-- variants: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- bit_rate: long (nullable = true)
+ |    |    |    |    |-- content_type: string (nullable = true)
+ |    |    |    |    |-- url: string (nullable = true)
+ |    |    |-- width: long (nullable = true)
+ |-- places: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- country: string (nullable = true)
+ |    |    |-- country_code: string (nullable = true)
+ |    |    |-- full_name: string (nullable = true)
+ |    |    |-- geo: struct (nullable = true)
+ |    |    |    |-- bbox: array (nullable = true)
+ |    |    |    |    |-- element: double (containsNull = true)
+ |    |    |    |-- type: string (nullable = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- name: string (nullable = true)
+ |    |    |-- place_type: string (nullable = true)
+ |-- tweets: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- attachments: struct (nullable = true)
+ |    |    |    |-- media_keys: array (nullable = true)
+ |    |    |    |    |-- element: string (containsNull = true)
+ |    |    |    |-- poll_ids: array (nullable = true)
+ |    |    |    |    |-- element: string (containsNull = true)
+ |    |    |-- author_id: string (nullable = true)
+ |    |    |-- context_annotations: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- domain: struct (nullable = true)
+ |    |    |    |    |    |-- description: string (nullable = true)
+ |    |    |    |    |    |-- id: string (nullable = true)
+ |    |    |    |    |    |-- name: string (nullable = true)
+ |    |    |    |    |-- entity: struct (nullable = true)
+ |    |    |    |    |    |-- description: string (nullable = true)
+ |    |    |    |    |    |-- id: string (nullable = true)
+ |    |    |    |    |    |-- name: string (nullable = true)
+ |    |    |-- conversation_id: string (nullable = true)
+ |    |    |-- created_at: string (nullable = true)
+ |    |    |-- entities: struct (nullable = true)
+ |    |    |    |-- annotations: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |-- normalized_text: string (nullable = true)
+ |    |    |    |    |    |-- probability: double (nullable = true)
+ |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |-- type: string (nullable = true)
+ |    |    |    |-- cashtags: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |-- tag: string (nullable = true)
+ |    |    |    |-- hashtags: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |-- tag: string (nullable = true)
+ |    |    |    |-- mentions: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |-- id: string (nullable = true)
+ |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |-- username: string (nullable = true)
+ |    |    |    |-- urls: array (nullable = true)
+ |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |-- description: string (nullable = true)
+ |    |    |    |    |    |-- display_url: string (nullable = true)
+ |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |-- expanded_url: string (nullable = true)
+ |    |    |    |    |    |-- images: array (nullable = true)
+ |    |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |    |-- height: long (nullable = true)
+ |    |    |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |    |    |    |    |    |-- width: long (nullable = true)
+ |    |    |    |    |    |-- media_key: string (nullable = true)
+ |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |-- status: long (nullable = true)
+ |    |    |    |    |    |-- title: string (nullable = true)
+ |    |    |    |    |    |-- unwound_url: string (nullable = true)
+ |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |-- geo: struct (nullable = true)
+ |    |    |    |-- coordinates: struct (nullable = true)
+ |    |    |    |    |-- coordinates: array (nullable = true)
+ |    |    |    |    |    |-- element: double (containsNull = true)
+ |    |    |    |    |-- type: string (nullable = true)
+ |    |    |    |-- place_id: string (nullable = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- in_reply_to_user_id: string (nullable = true)
+ |    |    |-- lang: string (nullable = true)
+ |    |    |-- possibly_sensitive: boolean (nullable = true)
+ |    |    |-- public_metrics: struct (nullable = true)
+ |    |    |    |-- like_count: long (nullable = true)
+ |    |    |    |-- quote_count: long (nullable = true)
+ |    |    |    |-- reply_count: long (nullable = true)
+ |    |    |    |-- retweet_count: long (nullable = true)
+ |    |    |-- referenced_tweets: array (nullable = true)
+ |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- id: string (nullable = true)
+ |    |    |    |    |-- type: string (nullable = true)
+ |    |    |-- reply_settings: string (nullable = true)
+ |    |    |-- source: string (nullable = true)
+ |    |    |-- text: string (nullable = true)
+ |    |    |-- withheld: struct (nullable = true)
+ |    |    |    |-- copyright: boolean (nullable = true)
+ |    |    |    |-- country_codes: array (nullable = true)
+ |    |    |    |    |-- element: string (containsNull = true)
+ |-- users: array (nullable = true)
+ |    |-- element: struct (containsNull = true)
+ |    |    |-- created_at: string (nullable = true)
+ |    |    |-- description: string (nullable = true)
+ |    |    |-- entities: struct (nullable = true)
+ |    |    |    |-- description: struct (nullable = true)
+ |    |    |    |    |-- cashtags: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |    |-- tag: string (nullable = true)
+ |    |    |    |    |-- hashtags: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |    |-- tag: string (nullable = true)
+ |    |    |    |    |-- mentions: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |    |-- username: string (nullable = true)
+ |    |    |    |    |-- urls: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- display_url: string (nullable = true)
+ |    |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |    |-- expanded_url: string (nullable = true)
+ |    |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |    |-- url: struct (nullable = true)
+ |    |    |    |    |-- urls: array (nullable = true)
+ |    |    |    |    |    |-- element: struct (containsNull = true)
+ |    |    |    |    |    |    |-- display_url: string (nullable = true)
+ |    |    |    |    |    |    |-- end: long (nullable = true)
+ |    |    |    |    |    |    |-- expanded_url: string (nullable = true)
+ |    |    |    |    |    |    |-- start: long (nullable = true)
+ |    |    |    |    |    |    |-- url: string (nullable = true)
+ |    |    |-- id: string (nullable = true)
+ |    |    |-- location: string (nullable = true)
+ |    |    |-- name: string (nullable = true)
+ |    |    |-- pinned_tweet_id: string (nullable = true)
+ |    |    |-- profile_image_url: string (nullable = true)
+ |    |    |-- protected: boolean (nullable = true)
+ |    |    |-- public_metrics: struct (nullable = true)
+ |    |    |    |-- followers_count: long (nullable = true)
+ |    |    |    |-- following_count: long (nullable = true)
+ |    |    |    |-- listed_count: long (nullable = true)
+ |    |    |    |-- tweet_count: long (nullable = true)
+ |    |    |-- url: string (nullable = true)
+ |    |    |-- username: string (nullable = true)
+ |    |    |-- verified: boolean (nullable = true)
+ |    |    |-- withheld: struct (nullable = true)
+ |    |    |    |-- country_codes: array (nullable = true)
+ |    |    |    |    |-- element: string (containsNull = true)
+
+sinisa AAAAAAAAAAAAAAAAAAAAADMQeAEAAAAAqg8li4EedH9xlwQODgtq8BMppjY%3DaWvQeHVBe6PKH8JMWGcMHmYebyfJNc6ZdWeuXYtcw576JksAGi
+
+
+--packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.0
+ 
+ spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.0 --jars /driver/postgresql-42.3.5.jar /spark/primeri/GEO_kafka_extend-assembly-0.1.0-SNAPSHOT.jar
+ 
+ spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0  --jars /driver/postgresql-42.3.5.jar /spark/primeri/Stream.py 
+ 
+4738
+FROM postgres
+
+COPY ./init.sql /docker-entrypoint-initdb
+
+docker run -e PGADMIN_DEFAULT_EMAIL='S' -e PGADMIN_DEFAULT_PASSWORD='p' -p 5555:80 --name pgadmin dpage/pgadmin4
+
+postgresql.conf
+
+cert cert.pem
+
+key  private.pem
+
+openssl req -x509 -newkey rsa:4096(or above)
+
+
+https://api.twitter.com/2/tweets/search/recent?query=covid%20has%3Aimages&tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld&expansions=attachments.media_keys,attachments.poll_ids,author_id,entities.mentions.username,geo.place_id,in_reply_to_user_id,referenced_tweets.id,referenced_tweets.id.author_id&media.fields=alt_text,duration_ms,height,media_key,preview_image_url,public_metrics,type,url,variants,width&poll.fields=duration_minutes,end_datetime,id,options,voting_status&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld&place.fields=contained_within,country,country_code,full_name,geo,id,name,place_type&max_results=100${next_token:equals(""):ifElse("","&next_token=")}${next_token}
+
+
+
+
+
+
+
+
+
+  
