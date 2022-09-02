@@ -106,7 +106,8 @@ services:
       - PYSPARK_PYTHON=python3
     env_file:
       - ./hadoop.env
-    volumes:  
+    volumes:     
+      - ./shell:/shell/
       - ./spark:/spark/primeri
       - ./driver/:/driver/
 

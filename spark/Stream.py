@@ -210,6 +210,7 @@ def batchFunction(batch, bid):
                 .select("col.tag") \
                 .groupBy("tag") \
                 .count()
+
       cashtags \
               .write \
               .mode("append") \
