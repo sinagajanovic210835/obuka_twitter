@@ -6,26 +6,33 @@ HOUR=$3
 DAY=$4
 MONTH=$5
 WEEKDAY=$6
+ARGS=`expr $# - 1`
 
-if [ -z $MIN -o $MIN = "x" ] 
-then
-    MIN="x"
-fi
-if [ -z $HOUR -o $HOUR = "x" ] 
-then
-    HOUR="x"
-fi
-if [ -z $DAY -o $DAY = "x" ] 
-then    DAY="x"
-fi
-if [ -z $MONTH -o $MONTH = "x"  ] 
-then
-    MONTH="x"    
-fi
-if [ -z $WEEKDAY -o $WEEKDAY = "x" ] 
+if [ $ARGS -lt 5 ]
 then
     WEEKDAY="x"
 fi
+
+if [ $ARGS -lt 4 ]
+then
+    MONTH="x"
+fi
+
+if [ $ARGS -lt 3 ]
+then
+    DAY="x"
+fi
+
+if [ $ARGS -lt 2 ]
+then
+    HOUR="x"
+fi
+
+if [ $ARGS -lt 1 ]
+then
+    MIN="x"        
+fi
+
 docker-compose -f ./docker-compose-nifi.yml up & docker-compose -f ./superset/docker-compose-non-dev.yml up & \
 sleep 10
 docker network connect superset_default postgres
