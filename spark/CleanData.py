@@ -44,4 +44,3 @@ tweetsWithUsername \
     .write \
     .json("hdfs://namenode:9000/user/test/clean_data")
 
-    
