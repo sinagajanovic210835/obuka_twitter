@@ -129,26 +129,7 @@ txt>>>    76837
  
  
  
-   val df = df1
-  .groupBy("id").agg(
-    first(col("attachments")).alias("attachments"),
-    first(col("author_id")).alias("author_id"),
-    first(col("context_annotations")).alias("context_annotations"),
-    first(col("conversation_id")).alias("conversation_id"),
-    first(col("created_at")).alias("created_at"),
-    first(col("entities")).alias("entities"),
-    first(col("geo")).alias("geo"),
-    first(col("in_reply_to_user_id")).alias("in_reply_to_user_id"),
-    first(col("lang")).alias("lang"),
-    first(col("possibly_sensitive")).alias("possibly_sensitive"),
-    max(col("public_metrics")).alias("public_metrics"),
-    first(col("referenced_tweets")).alias("referenced_tweets"),
-    first(col("reply_settings")).alias("reply_settings"),
-    first(col("source")).alias("source"),
-    first(col("text")).alias("text"),
-    first(col("withheld")).alias("withheld")
-  )
-  
+   
     val geo = df.filter(col("geo.coordinates.coordinates").isNotNull).
       select(col("id"), col("text"),
       element_at(col("geo.coordinates.coordinates"), 1).alias("longitude"),
@@ -266,12 +247,7 @@ root
  |    |    |-- url: string (nullable = true)
  |    |    |-- variants: array (nullable = true)
  |    |    |    |-- element: struct (containsNull = true)
- |    |    |    |    |-- bit_rate: long (nullable = true)
- |    |    |    |    |-- content_type: string (nullable = true)
- |    |    |    |    |-- url: string (nullable = true)
- |    |    |-- width: long (nullable = true)
- |-- places: array (nullable = true)
- |    |-- element: struct (containsNull = true)
+ |    |    |    |    |-- bidockercontainsNull = true)
  |    |    |-- country: string (nullable = true)
  |    |    |-- country_code: string (nullable = true)
  |    |    |-- full_name: string (nullable = true)
@@ -382,14 +358,7 @@ root
  |    |    |    |    |    |    |-- tag: string (nullable = true)
  |    |    |    |    |-- hashtags: array (nullable = true)
  |    |    |    |    |    |-- element: struct (containsNull = true)
- |    |    |    |    |    |    |-- end: long (nullable = true)
- |    |    |    |    |    |    |-- start: long (nullable = true)
- |    |    |    |    |    |    |-- tag: string (nullable = true)
- |    |    |    |    |-- mentions: array (nullable = true)
- |    |    |    |    |    |-- element: struct (containsNull = true)
- |    |    |    |    |    |    |-- end: long (nullable = true)
- |    |    |    |    |    |    |-- start: long (nullable = true)
- |    |    |    |    |    |    |-- username: string (nullable = true)
+ |    |    |    |    |    |docker    |-- username: string (nullable = true)
  |    |    |    |    |-- urls: array (nullable = true)
  |    |    |    |    |    |-- element: struct (containsNull = true)
  |    |    |    |    |    |    |-- display_url: string (nullable = true)
@@ -450,12 +419,4 @@ openssl req -x509 -newkey rsa:4096(or above)
 
 https://api.twitter.com/2/tweets/search/recent?query=covid%20has%3Aimages&tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld&expansions=attachments.media_keys,attachments.poll_ids,author_id,entities.mentions.username,geo.place_id,in_reply_to_user_id,referenced_tweets.id,referenced_tweets.id.author_id&media.fields=alt_text,duration_ms,height,media_key,preview_image_url,public_metrics,type,url,variants,width&poll.fields=duration_minutes,end_datetime,id,options,voting_status&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld&place.fields=contained_within,country,country_code,full_name,geo,id,name,place_type&max_results=100${next_token:equals(""):ifElse("","&next_token=")}${next_token}
 
-
-
-
-
-
-
-
-
-  
+druid://druid:8082/druid/v2/sql/  

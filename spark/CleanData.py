@@ -42,5 +42,6 @@ tweetsWithUsername = clean_data.join(users, col("author_id") == col("uid")).drop
 tweetsWithUsername \
     .repartition(6) \
     .write \
-    .json("hdfs://namenode:9000/user/test/clean_data")
-
+    .json("hdfs://namenode:9000/user/test/clean_data")    
+    
+    

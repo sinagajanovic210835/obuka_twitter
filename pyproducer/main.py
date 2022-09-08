@@ -49,7 +49,7 @@ def delete_all_rules(rules):
 def set_rules(delete):
     # You can adjust the rules if needed
     sample_rules = [
-        {"value": "sport has:images", "tag": "sport"}
+        {"value": "sport has:geo", "tag": "sport"}
             ]
     payload = {"add": sample_rules}
     response = requests.post(
@@ -65,7 +65,7 @@ def set_rules(delete):
 
 
 def get_stream(set):
-    cnt = 1
+    cnt = 105
     response = requests.get(
           "https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,organic_metrics,possibly_sensitive,promoted_metrics,public_metrics,referenced_tweets,reply_settings,source,text,withheld&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld", auth=bearer_oauth, stream=True,
     )
