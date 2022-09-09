@@ -39,9 +39,7 @@ docker network connect superset_default postgres
 docker network connect superset_default druid
 SUCC=$?
 if [ $SUCC == 0 -a $1 = "-ct" ]
-then
-    rm -rf ./spark/Stream/target/ && \
-    rm -rf ./spark/Stream/project/target/ && \
+then   
     cd spark/Stream/ &&  \
     sbt assembly && \
     STR="$MIN $HOUR $DAY $MONTH $WEEKDAY"
