@@ -2,3 +2,8 @@ files/*
 redis
 spark/*.jar
 superset
+spark/Stream/target
+spark/project/target
+spark/Stream/project/*.cache
+spark/stream/project/*.class
+spqrk/stream/project/project

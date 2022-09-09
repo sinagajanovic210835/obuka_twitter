@@ -24,7 +24,7 @@ if [ $WEEKDAY = "x" ]
 then
     WEEKDAY="*"
 fi
-echo -e "$MIN\t$HOUR\t$DAY\t$MONTH\t$WEEKDAY\t/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.0 --jars /driver/postgresql-42.3.5.jar /spark/primeri/GEO_kafka_extend-assembly-0.1.0-SNAPSHOT.jar" >> /var/spool/cron/crontabs/root
+echo -e "$MIN\t$HOUR\t$DAY\t$MONTH\t$WEEKDAY\t/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.0 --jars /driver/postgresql-42.3.5.jar /spark/primeri/Stream/target/scala-2.12/GEO_kafka_extend-assembly-0.1.0-SNAPSHOT.jar" >> /var/spool/cron/crontabs/root
 if [ $? == 0 ]
 then
     crond start

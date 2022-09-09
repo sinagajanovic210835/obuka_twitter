@@ -40,6 +40,10 @@ docker network connect superset_default druid
 SUCC=$?
 if [ $SUCC == 0 -a $1 = "-ct" ]
 then
+    rm -rf ./spark/Stream/target/ && \
+    rm -rf ./spark/Stream/project/target/ && \
+    cd spark/Stream/ &&  \
+    sbt assembly && \
     STR="$MIN $HOUR $DAY $MONTH $WEEKDAY"
     docker exec -d spark-master sh /shell/setcron.sh $STR       
 fi    
