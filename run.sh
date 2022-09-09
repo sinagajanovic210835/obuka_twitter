@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# git clone https://github.com/apache/superset.git 
+# git clone https://github.com/apache/superset.git && \
 MIN=$2
 HOUR=$3
 DAY=$4
@@ -33,14 +33,15 @@ then
     MIN="x"        
 fi
 
-docker-compose -f ./docker-compose-nifi.yml up --build & docker-compose -f ./superset/docker-compose-non-dev.yml up & \
-sleep 10
+docker-compose -f ./docker-compose-nifi.yml up --build & \
+docker-compose -f ./superset/docker-compose-non-dev.yml up & \
+sleep 10 && \
 docker network connect superset_default postgres
 docker network connect superset_default druid
 SUCC=$?
 if [ $SUCC == 0 -a $1 = "-ct" ]
 then   
-    cd spark/Stream/ &&  \
+    cd spark/Stream/ && \
     sbt assembly && \
     STR="$MIN $HOUR $DAY $MONTH $WEEKDAY"
     docker exec -d spark-master sh /shell/setcron.sh $STR       

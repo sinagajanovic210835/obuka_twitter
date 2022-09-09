@@ -2,8 +2,10 @@ files/*
 redis
 spark/*.jar
 superset
-spark/Stream/target
-spark/Stream/project/target
-spark/Stream/project/*.cache
-spark/stream/project/*.class
-spark/Stream/project/project
+spark/*/target
+spark/*/project/target
+spark/*/project/*.cache
+spark/*/project/*.class
+spark/*/project/project
+spark/*/target
+

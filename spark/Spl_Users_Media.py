@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-# clean Batch Data - remove duplicates and add username and name fields
+# extract Users and Media from includes
 
 spark = \
   SparkSession \
@@ -22,9 +22,9 @@ users = df.select(explode("users")) \
           .select("col.username", "col.name","col.id","col.created_at","col.description","col.entities", \
                     "col.location","col.pinned_tweet_id","col.profile_image_url","col.protected","col.public_metrics", \
                     "col.url","col.verified") \
-          .groupBy("username") \
-          .agg(first(col("name")).alias("name"), first(col("id")).alias("id"),first(col("created_at")).alias("created_at"),first(col("description")).alias("description"), \
-               first(col("entities")).alias("entities"), first(col("location")).alias("location"), \
+          .groupBy("id") \
+          .agg(first(col("username")).alias("username"), first(col("name")).alias("name"),first(col("created_at")).alias("created_at"), \
+               first(col("description")).alias("description"), first(col("entities")).alias("entities"), first(col("location")).alias("location"), \
                first(col("pinned_tweet_id")).alias("pinned_tweet_id"), first(col("profile_image_url")).alias("profile_image_url"), \
                first(col("protected")).alias("protected"),first(col("public_metrics")).alias("public_metrics"), first(col("url")).alias("url"), \
                first(col("verified")).alias("verified"))
