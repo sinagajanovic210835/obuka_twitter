@@ -20,7 +20,7 @@ if [ $MONTH = "x"  ]
 then
     MONTH="*"    
 fi
-if [ $WEEKDAY = "x" ] 
+if [ $WEEKDAY = "x" ]
 then
     WEEKDAY="*"
 fi

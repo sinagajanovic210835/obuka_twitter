@@ -164,11 +164,11 @@ df = spark \
 kafka = df.selectExpr("cast (key as string)","cast (value as string)") \
                   .select(col("key"), from_json(col("value") \
                   .cast(StringType()), schema) \
-                  .alias("value")) \
+                  .alias("value"))
 
 def batchFunction(batch, bid):
       geo = batch.filter(col("value.geo.coordinates.coordinates").isNotNull()) \
-            .select(col("value.username"), \
+            .select(col("value.author_id"), \
               col("value.text"), \
               col("value.geo.coordinates.coordinates").getItem(0).alias("longitude"), \
               col("value.geo.coordinates.coordinates").getItem(1).alias("latitude") \
@@ -184,7 +184,7 @@ def batchFunction(batch, bid):
           .save()
 
       entities = batch.filter(col("value.entities").isNotNull()) \
-                .select(col("value.username").alias("username"), \
+                .select(col("value.author_id").alias("username"), \
                         col("value.entities").alias("entities"))
 
       # annotations
@@ -245,6 +245,7 @@ def batchFunction(batch, bid):
                 .select("col.username") \
                 .groupBy("username") \
                 .count()
+                
       mentions \
               .write \
               .mode("append") \
@@ -257,7 +258,7 @@ def batchFunction(batch, bid):
               .save()
             
 kafka.writeStream \
-  .option("checkpointLocation", "./checkpoint/") \
+  .option("checkpointLocation", "/checkpoint/")
   .foreachBatch(batchFunction) \
   .start() \
   .awaitTermination()
